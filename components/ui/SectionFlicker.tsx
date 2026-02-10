@@ -7,6 +7,7 @@ interface SectionFlickerProps {
   className?: string;
 }
 
+
 export const SectionFlicker: React.FC<SectionFlickerProps> = ({ children, id, className = '' }) => {
   return (
     <section id={id} className={`relative ${className}`}>
