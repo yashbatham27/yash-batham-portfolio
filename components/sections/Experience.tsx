@@ -2,10 +2,11 @@ import React from 'react';
 import { EXPERIENCE_DATA } from '../../constants';
 import { Briefcase } from 'lucide-react';
 import { Typewriter } from '../ui/Typewriter';
+import { SectionFlicker } from '../ui/SectionFlicker';
 
 export const Experience: React.FC = () => {
   return (
-    <section className="py-24 px-6 md:px-12 border-b border-white/10">
+    <SectionFlicker id="experience" className="py-24 px-6 md:px-12 border-b border-white/10 scroll-mt-16">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-3xl md:text-5xl font-bold mb-16 text-right">
           EXPERIENCE_LOG
@@ -52,6 +53,6 @@ export const Experience: React.FC = () => {
           ))}
         </div>
       </div>
-    </section>
+    </SectionFlicker>
   );
 };

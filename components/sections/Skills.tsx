@@ -1,15 +1,15 @@
+
 import React, { useState } from 'react';
 import { SKILLS_DATA } from '../../constants';
 import { Terminal } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { SectionFlicker } from '../ui/SectionFlicker';
 
 export const Skills: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState(0);
 
   return (
-    <section className="py-24 px-6 md:px-12 border-b border-white/10 bg-cyber-black relative overflow-hidden">
-      {/* Background Matrix-like effect could go here */}
-      
+    <SectionFlicker id="skills" className="py-24 px-6 md:px-12 border-b border-white/10 bg-cyber-black relative scroll-mt-16">
       <div className="max-w-5xl mx-auto">
         <div className="flex items-end gap-4 mb-12">
           <h2 className="text-3xl md:text-5xl font-bold">SKILLS_TERMINAL</h2>
@@ -81,6 +81,6 @@ export const Skills: React.FC = () => {
           </div>
         </div>
       </div>
-    </section>
+    </SectionFlicker>
   );
 };

@@ -1,11 +1,16 @@
+
 import React from 'react';
 import { CyberFrame } from '../ui/CyberFrame';
 import { Typewriter } from '../ui/Typewriter';
 import { motion } from 'framer-motion';
+import { SectionFlicker } from '../ui/SectionFlicker';
+import { getExperience } from '../../constants';
 
 export const About: React.FC = () => {
+  const yearsOfExperience = getExperience();
+
   return (
-    <section className="py-24 px-6 md:px-12 border-b border-white/10">
+    <SectionFlicker id="about" className="py-24 px-6 md:px-12 border-b border-white/10 scroll-mt-16">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12">
         <div className="md:col-span-4">
           <h2 className="text-4xl font-bold mb-4 tracking-tight">
@@ -19,7 +24,7 @@ export const About: React.FC = () => {
             <div className="space-y-6 text-white/80">
               <Typewriter 
                 segments={[
-                  { text: "I am a dedicated Software Developer with over 2.5 years of experience in architecting scalable, enterprise-grade web applications. Currently at " },
+                  { text: `I am a dedicated Software Developer with over ${yearsOfExperience} years of experience in architecting scalable, enterprise-grade web applications. Currently at ` },
                   { text: "Accenture", className: "text-white font-bold" },
                   { text: ", I specialize in the full development lifecycle—delivering secure, high-performance solutions for complex business needs." }
                 ]}
@@ -78,6 +83,6 @@ export const About: React.FC = () => {
           </CyberFrame>
         </div>
       </div>
-    </section>
+    </SectionFlicker>
   );
 };

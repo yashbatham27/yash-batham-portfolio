@@ -13,6 +13,7 @@ export interface Project {
   tech: string[];
   description: string;
   link?: string;
+  repo?: string;
 }
 
 export interface SkillCategory {

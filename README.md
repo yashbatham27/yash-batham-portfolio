@@ -1,4 +1,4 @@
-# Yash Batham - Portfolio
+# Yash Batham - Cyberpunk Portfolio
 
 A high-performance, monochrome cyberpunk-themed personal portfolio website built with React, TypeScript, and Tailwind CSS.
 

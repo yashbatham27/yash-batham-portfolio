@@ -1,4 +1,15 @@
+
 import { Experience, Project, SkillCategory } from './types';
+
+// Start date: July 1, 2023
+export const START_DATE = new Date('2023-07-01');
+
+export const getExperience = () => {
+  const now = new Date();
+  const diff = now.getTime() - START_DATE.getTime();
+  const years = diff / (1000 * 60 * 60 * 24 * 365.25);
+  return years.toFixed(1);
+};
 
 export const EXPERIENCE_DATA: Experience[] = [
   {
@@ -18,6 +29,22 @@ export const EXPERIENCE_DATA: Experience[] = [
 ];
 
 export const PROJECTS_DATA: Project[] = [
+  {
+    id: 'proj-insure-ai',
+    title: 'InsureAI — Underwriting Suite',
+    tech: ['React.js', 'TypeScript', 'Gemini AI', 'Tailwind CSS'],
+    description: 'Engineered a Hybrid AI-Deterministic Architecture using Gemini 3 Flash/Pro for entity extraction and a TypeScript rule engine for risk assessment, preventing hallucinations in premium calculations. Implemented a custom Highlighter UI to visualize extracted medical terms and integrated jsPDF/Recharts for generating real-time professional actuarial reports.',
+    link: 'https://insureai-web.vercel.app/',
+    repo: 'https://github.com/yashbatham27/InsureAI-underwriting-suite'
+  },
+  {
+    id: 'proj-portfolio',
+    title: 'Personal Portfolio (Cyberpunk)',
+    tech: ['React.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+    description: 'A high-performance, monochrome cyberpunk-themed personal portfolio website. Features include CRT monitor simulation, custom glitch text effects, a matrix rain background, and a terminal-inspired UI interface.',
+    link: 'https://yash-batham.vercel.app/',
+    repo: 'https://github.com/yashbatham27/yash-batham-portfolio'
+  },
   {
     id: 'proj-1',
     title: 'Yize — E-commerce',

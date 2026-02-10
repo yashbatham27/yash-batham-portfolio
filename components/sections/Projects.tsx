@@ -1,13 +1,26 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import { PROJECTS_DATA } from '../../constants';
 import { CyberFrame } from '../ui/CyberFrame';
-import { ExternalLink, Github } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { ExternalLink, Github, AlertTriangle } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Typewriter } from '../ui/Typewriter';
+import { SectionFlicker } from '../ui/SectionFlicker';
 
 export const Projects: React.FC = () => {
+  const [recursionWarningId, setRecursionWarningId] = useState<string | null>(null);
+
+  const handleLiveDemoClick = (e: React.MouseEvent, projectId: string) => {
+    // If it's the portfolio project, intercept the click
+    if (projectId === 'proj-portfolio') {
+      e.preventDefault();
+      setRecursionWarningId(projectId);
+      setTimeout(() => setRecursionWarningId(null), 3000);
+    }
+  };
+
   return (
-    <section className="py-24 px-6 md:px-12 border-b border-white/10 relative overflow-hidden">
+    <SectionFlicker id="projects" className="py-24 px-6 md:px-12 border-b border-white/10 relative scroll-mt-16">
       {/* Local Scanline Effect */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-25 z-0"
@@ -49,20 +62,64 @@ export const Projects: React.FC = () => {
                 </div>
 
                 <div className="flex items-center gap-4 mt-auto pt-6 border-t border-white/10">
-                  <button className="flex items-center gap-2 text-sm font-bold hover:bg-white hover:text-black px-4 py-2 transition-colors border border-transparent hover:border-white">
-                    <ExternalLink size={16} />
-                    LIVE DEMO
-                  </button>
-                  <button className="flex items-center gap-2 text-sm font-bold text-white/50 hover:text-white transition-colors">
-                    <Github size={16} />
-                    CODEBASE
-                  </button>
+                  {project.link && (
+                    <div className="relative">
+                        <a 
+                          href={project.link}
+                          onClick={(e) => handleLiveDemoClick(e, project.id)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`flex items-center gap-2 text-sm font-bold hover:bg-white hover:text-black px-4 py-2 transition-all border border-transparent hover:border-white ${recursionWarningId === project.id ? 'bg-red-500/10 border-red-500 text-red-500 hover:bg-red-500 hover:text-white' : ''}`}
+                        >
+                          {recursionWarningId === project.id ? (
+                            <motion.div 
+                                initial={{ opacity: 0 }} 
+                                animate={{ opacity: 1 }}
+                                className="flex items-center gap-2"
+                            >
+                                <AlertTriangle size={16} />
+                                <span>RECURSION_DETECTED</span>
+                            </motion.div>
+                          ) : (
+                            <>
+                                <ExternalLink size={16} />
+                                <span>LIVE DEMO</span>
+                            </>
+                          )}
+                        </a>
+                        
+                        {/* Optional Tooltip for more context */}
+                        <AnimatePresence>
+                            {recursionWarningId === project.id && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0 }}
+                                    className="absolute bottom-full left-0 mb-2 w-max max-w-[250px] bg-black border border-red-500 p-2 text-[10px] text-red-400 font-mono"
+                                >
+                                    {`> SYSTEM_WARNING: YOU ARE ALREADY VIEWING THIS APP INSTANCE.`}
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+                  )}
+                  {project.repo && (
+                    <a 
+                      href={project.repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-sm font-bold text-white/50 hover:text-white transition-colors"
+                    >
+                      <Github size={16} />
+                      CODEBASE
+                    </a>
+                  )}
                 </div>
               </CyberFrame>
             </motion.div>
           ))}
         </div>
       </div>
-    </section>
-  );
+      </SectionFlicker>
+    );
 };

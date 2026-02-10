@@ -1,10 +1,12 @@
+
 import React from 'react';
 import { SOCIAL_LINKS } from '../../constants';
 import { Mail, Linkedin, ArrowUpRight } from 'lucide-react';
+import { SectionFlicker } from '../ui/SectionFlicker';
 
 export const Contact: React.FC = () => {
   return (
-    <footer className="py-24 px-6 md:px-12 bg-black relative">
+    <SectionFlicker id="contact" className="pt-24 pb-10 px-6 md:px-12 bg-black relative scroll-mt-16">
        <div className="max-w-4xl mx-auto text-center">
          <h2 className="text-4xl md:text-6xl font-bold mb-8">
            INITIATE_CONTACT
@@ -35,11 +37,11 @@ export const Contact: React.FC = () => {
            </a>
          </div>
 
-         <div className="mt-24 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-white/30 font-mono">
+         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-white/30 font-mono">
            <p>© {new Date().getFullYear()} YASH BATHAM. ALL RIGHTS RESERVED.</p>
            <p>SYSTEM.STATUS: OPERATIONAL</p>
          </div>
        </div>
-    </footer>
+    </SectionFlicker>
   );
 };
